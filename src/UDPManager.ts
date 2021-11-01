@@ -59,7 +59,7 @@ class UDPManager {
       try {
         const str = String.fromCharCode.apply(null, new Uint8Array(msg));
         const obj = JSON.parse(str);
-        logger.trace(
+        logger.info(
           `message received - ${str} with info - ${JSON.stringify(rinfo)}`,
         );
         await this.processMessage(obj, rinfo.address);

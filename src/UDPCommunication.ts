@@ -24,7 +24,7 @@ export default async function sendCommand<T extends WiZMessageResponse>(
   socket: dgram.Socket = dgram.createSocket("udp4"),
 ): Promise<Result<T>> {
   return new Promise(async (resolve: (value: Result<T>) => void) => {
-    logger.trace(`sending ${JSON.stringify(msg)} to ip ${ip}`);
+    logger.info(`sending ${JSON.stringify(msg)} to ip ${ip}`);
     try {
       await socket.bind(undefined, localIp);
     } catch (e) {
@@ -65,7 +65,7 @@ export default async function sendCommand<T extends WiZMessageResponse>(
         undefined,
         new Uint8Array(incomingMsg),
       );
-      logger.trace(`result of sending ${str}`);
+      logger.info(`result of sending ${str}`);
       try {
         const msgObj = JSON.parse(str);
         if (msgObj.result && msgObj.result) {
